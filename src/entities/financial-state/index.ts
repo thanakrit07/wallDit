@@ -1,0 +1,1 @@
+export { financialStateModel } from './model';
