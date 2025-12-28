@@ -17,16 +17,16 @@ export const financialStateModel = {
     
     // Critical: negative available balance or can't cover obligations
     if (availableForInvestment < 0 || currentBalance < upcomingObligations) {
-      return FinancialHealthStatus.CRITICAL;
+      return 'critical';
     }
     
     // Warning: very low available balance (less than 10% of current balance)
     if (currentBalance > 0 && availableForInvestment < currentBalance * 0.1) {
-      return FinancialHealthStatus.WARNING;
+      return 'warning';
     }
     
     // Good: healthy available balance
-    return FinancialHealthStatus.GOOD;
+    return 'good';
   },
 
   updateBalance: (state: FinancialState, newBalance: number): FinancialState => ({

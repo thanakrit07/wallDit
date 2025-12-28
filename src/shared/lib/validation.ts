@@ -10,10 +10,6 @@ import type {
   ValidationResult,
   InvestmentType
 } from '../types';
-import { 
-  TransactionCategory,
-  PaymentObligationType
-} from '../types';
 import { isValidDate } from './utils';
 
 // Validation constants
@@ -81,7 +77,7 @@ export function validateTransaction(transaction: Partial<Transaction>): Validati
   }
 
   // Optional fields validation
-  if (transaction.category && !Object.values(TransactionCategory).includes(transaction.category as TransactionCategory)) {
+  if (transaction.category && !['food', 'transportation', 'entertainment', 'shopping', 'utilities', 'healthcare', 'other'].includes(transaction.category)) {
     errors.push('Invalid transaction category');
   }
 
@@ -145,7 +141,7 @@ export function validateInstallmentPlan(plan: Partial<InstallmentPlan>): Validat
 export function validatePaymentObligation(obligation: Partial<PaymentObligation>): ValidationResult {
   const errors: string[] = [];
 
-  if (!obligation.type || !Object.values(PaymentObligationType).includes(obligation.type as PaymentObligationType)) {
+  if (!obligation.type || !['credit-card', 'installment'].includes(obligation.type)) {
     errors.push('Valid payment obligation type is required');
   }
 
