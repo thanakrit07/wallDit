@@ -8,7 +8,7 @@ import type {
   PaymentObligation, 
   FinancialState,
   ValidationResult,
-  InvestmentType
+  // InvestmentType
 } from '../types';
 import { isValidDate } from './utils';
 
@@ -33,17 +33,17 @@ function isValidString(str: string | undefined, maxLength: number = MAX_DESCRIPT
   return typeof str === 'string' && str.trim().length > 0 && str.length <= maxLength;
 }
 
-function isValidEnum<T extends Record<string, string>>(value: string, enumObject: T): boolean {
-  return Object.values(enumObject).includes(value as T[keyof T]);
-}
+// function isValidEnum<T extends Record<string, string>>(value: string, enumObject: T): boolean {
+//   return Object.values(enumObject).includes(value as T[keyof T]);
+// }
 
-function isFutureDate(dateString: string): boolean {
-  if (!isValidDate(dateString)) return false;
-  const date = new Date(dateString);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return date >= today;
-}
+// function isFutureDate(dateString: string): boolean {
+//   if (!isValidDate(dateString)) return false;
+//   const date = new Date(dateString);
+//   const today = new Date();
+//   today.setHours(0, 0, 0, 0);
+//   return date >= today;
+// }
 
 function isPastOrTodayDate(dateString: string): boolean {
   if (!isValidDate(dateString)) return false;
